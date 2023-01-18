@@ -13,9 +13,7 @@ class _ArticlesRemoteRetrofitDataSource
   _ArticlesRemoteRetrofitDataSource(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'http://my-json-server.typicode.com/adamsmaka/json-demo';
-  }
+  });
 
   final Dio _dio;
 

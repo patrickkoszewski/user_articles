@@ -3,7 +3,7 @@ import 'package:user_articles/app/injection_container.dart';
 import 'package:user_articles/features/home/page/home_page.dart';
 
 void main() {
-  configureDependecies();
+  configureDependencies();
   runApp(const MyApp());
 }
 
