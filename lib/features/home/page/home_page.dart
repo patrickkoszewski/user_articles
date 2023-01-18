@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  // w Bloc provider jest <HomeCubit> gdyby nie było dajemy w getIt<HomeCubit>()
   @override
   Widget build(BuildContext context) {
     return Scaffold(
