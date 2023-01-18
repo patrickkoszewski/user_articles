@@ -11,6 +11,14 @@ class ArticlesRepository {
     if (json == null) {
       return [];
     }
-    return json.map((item) => ArticleModel.fromJson(item)).toList();
+    final allArticles =
+        json.map((item) => ArticleModel.fromJson(item)).toList();
+    //przeleci przez wszystkie elementy w artykułach i będzie sprawdzało
+    //czy wartości są ze sobą dopasowane
+    //.where((article) => article.authorId == authorId) filtruje obiekty
+    //na podstawie tego warunku czy jest spełniony
+    return allArticles
+        .where((article) => article.authorId == authorId)
+        .toList();
   }
 }
