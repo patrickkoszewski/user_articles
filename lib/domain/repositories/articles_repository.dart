@@ -4,19 +4,11 @@ import 'package:user_articles/domain/models/article_model.dart';
 class ArticlesRepository {
   ArticlesRepository({required this.remoteDataSource});
 
-  final ArticlesRemoteDioDataSource remoteDataSource;
+  final ArticlesRemoteRetrofitDataSource remoteDataSource;
 
   Future<List<ArticleModel>> getArticlesForAuthorId(int authorId) async {
-    final json = await remoteDataSource.getArticles();
-    if (json == null) {
-      return [];
-    }
-    final allArticles =
-        json.map((item) => ArticleModel.fromJson(item)).toList();
-    //przeleci przez wszystkie elementy w artykułach i będzie sprawdzało
-    //czy wartości są ze sobą dopasowane
-    //.where((article) => article.authorId == authorId) filtruje obiekty
-    //na podstawie tego warunku czy jest spełniony
+    final allArticles = await remoteDataSource.getArticles();
+
     return allArticles
         .where((article) => article.authorId == authorId)
         .toList();
