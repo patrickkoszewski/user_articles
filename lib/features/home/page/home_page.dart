@@ -1,10 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_articles/app/core/enums.dart';
-import 'package:user_articles/data/remote_data_sources/authors_remote_data_source.dart';
+import 'package:user_articles/app/injection_container.dart';
 import 'package:user_articles/domain/models/author_model.dart';
-import 'package:user_articles/domain/repositories/authors_repository.dart';
 import 'package:user_articles/features/articles/page/articles_page.dart';
 import 'package:user_articles/features/home/cubit/home_cubit.dart';
 
@@ -13,16 +11,13 @@ class HomePage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  // w Bloc provider jest <HomeCubit> gdyby nie było dajemy w getIt<HomeCubit>()
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider<HomeCubit>(
         create: (context) {
-          return HomeCubit(
-            authorsRepository: AuthorsRepository(
-              remoteDataSource: AuthorsRemoteRetrofitDataSource(Dio()),
-            ),
-          )..start();
+          return getIt()..start();
         },
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
